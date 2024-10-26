@@ -4,6 +4,7 @@ import com.spring_security.dto.SaveCategory;
 import com.spring_security.persistence.entity.Category;
 import com.spring_security.service.CategoryService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,12 @@ import java.util.Optional;
 @RequestMapping("/categories")
 public class CategoryController {
 
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
+
+    @Autowired
+    public CategoryController(CategoryService categoryService){
+        this.categoryService = categoryService;
+    }
 
     @GetMapping
     public ResponseEntity<Page<Category>> findAll(Pageable pageable) {

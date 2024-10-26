@@ -24,7 +24,7 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductStatus status;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category category;
 
